@@ -1,0 +1,275 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);padding:0}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.top-nav{display:flex;gap:5px;padding:12px 0 10px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:12px;flex-wrap:wrap}
+.d-btn{padding:6px 14px;border-radius:99px;font-size:12px;font-weight:500;cursor:pointer;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);color:var(--color-text-secondary);transition:all .15s;white-space:nowrap}
+.d-btn.active{background:#1D9E75;border-color:transparent;color:#fff}
+.day-panel{display:none}
+.day-panel.active{display:block}
+.card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+.card-head{padding:10px 14px;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary)}
+.card-row{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap}
+.day-label{font-size:11px;font-weight:500;padding:2px 8px;border-radius:99px;background:#E1F5EE;color:#085041;flex-shrink:0;margin-top:1px}
+.card-title{font-size:13px;font-weight:500;color:var(--color-text-primary);flex:1;min-width:180px}
+.card-goal{font-size:11px;color:var(--color-text-tertiary);margin-top:4px;width:100%}
+.trigger{font-size:10px;font-weight:500;padding:2px 7px;border-radius:99px;flex-shrink:0}
+.card-body{padding:12px 14px;background:var(--color-background-primary)}
+.s-lbl{font-size:10px;font-weight:500;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.s-row{display:flex;gap:8px;margin-bottom:7px;align-items:flex-start}
+.s-n{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;flex-shrink:0;margin-top:2px;background:#E1F5EE;color:#085041}
+.s-c{flex:1}
+.s-t{font-size:11px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.s-b{font-size:11px;color:var(--color-text-secondary);line-height:1.55}
+.ib{font-size:9px;font-weight:500;padding:1px 5px;border-radius:3px;background:#E1F5EE;color:#085041}
+.div{height:0.5px;background:var(--color-border-tertiary);margin:8px 0}
+.rule{display:flex;gap:5px;align-items:flex-start;margin-bottom:3px}
+.rd{width:3px;height:3px;border-radius:50%;background:var(--color-border-secondary);margin-top:5px;flex-shrink:0}
+.rt{font-size:10px;color:var(--color-text-tertiary);line-height:1.4}
+.urgency-box{background:rgba(29,158,117,0.07);border:0.5px solid rgba(29,158,117,0.25);border-radius:var(--border-radius-md);padding:10px 12px;margin-bottom:10px}
+.urgency-title{font-size:11px;font-weight:500;color:#0F6E56;margin-bottom:3px}
+.urgency-body{font-size:11px;color:var(--color-text-secondary);line-height:1.5}
+.footer{padding:8px 14px;border-top:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);display:flex;justify-content:space-between;align-items:center}
+.f-hint{font-size:11px;color:var(--color-text-tertiary)}
+.f-nav{display:flex;gap:6px}
+.f-btn{padding:4px 10px;border-radius:var(--border-radius-md);font-size:11px;font-weight:500;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary)}
+.urgency-levers{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:12px}
+.ul-head{padding:10px 14px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px;font-weight:500;color:var(--color-text-primary)}
+.ul-body{padding:10px 14px;background:var(--color-background-primary);display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lever{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 10px}
+.lever-title{font-size:11px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
+.lever-body{font-size:11px;color:var(--color-text-secondary);line-height:1.5}
+</style>
+
+<h2 class="sr-only">7-day community membership story launch template</h2>
+
+<div class="urgency-levers">
+  <div class="ul-head">4 real urgency levers for community offers — use at least 2</div>
+  <div class="ul-body">
+    <div class="lever"><div class="lever-title">Founding member price</div><div class="lever-body">Price goes up permanently after launch week. First [X] members lock in the founding rate forever. Must actually raise the price after.</div></div>
+    <div class="lever"><div class="lever-title">Cohort energy</div><div class="lever-body">Everyone starts together on Day 1. The founding cohort creates the culture. Rolling admissions is a different — lesser — experience.</div></div>
+    <div class="lever"><div class="lever-title">Founding member perks</div><div class="lever-body">Private channel, founding badge, live onboarding call, lifetime pricing lock. Perks disappear after Day 7. Real and tangible.</div></div>
+    <div class="lever"><div class="lever-title">Quality cap</div><div class="lever-body">First cohort capped at [X] members so everyone gets your personal attention during onboarding. Once full — waitlist only.</div></div>
+  </div>
+</div>
+
+<div class="top-nav">
+  <button class="d-btn active" onclick="show(1)">Day 1</button>
+  <button class="d-btn" onclick="show(2)">Day 2</button>
+  <button class="d-btn" onclick="show(3)">Day 3</button>
+  <button class="d-btn" onclick="show(4)">Day 4</button>
+  <button class="d-btn" onclick="show(5)">Day 5</button>
+  <button class="d-btn" onclick="show(6)">Day 6</button>
+  <button class="d-btn" onclick="show(7)">Day 7</button>
+</div>
+
+<div id="d1" class="day-panel active">
+  <div class="card">
+    <div class="card-head">
+      <div class="card-row">
+        <div class="day-label">Day 1</div>
+        <div class="card-title">Build curiosity — "something's been on my mind"</div>
+        <div class="trigger" style="background:#E1F5EE;color:#085041">Curiosity</div>
+      </div>
+      <div class="card-goal">Plant the seed · make them feel seen · activate engagement · zero selling</div>
+    </div>
+    <div class="card-body">
+      <div class="urgency-box"><div class="urgency-title">Urgency planted today</div><div class="urgency-body">Mention "something I'm building" — don't name it yet. The founding member framing starts here: they need to be watching this week to get access to the early pricing.</div></div>
+      <div class="s-lbl">10 stories max</div>
+      <div class="s-row"><div class="s-n">1</div><div class="s-c"><div class="s-t">Hook — the thing you've been sitting with</div><div class="s-b">"I need to be honest about something. I've been watching [your audience] for a while. And there's a pattern I can't stop thinking about." Calm, personal, no hype. Opens a loop immediately.</div></div></div>
+      <div class="s-row"><div class="s-n">2</div><div class="s-c"><div class="s-t">Mirror their isolation</div><div class="s-b">"Most [audience type] are doing this completely alone. They [do the hard thing] in isolation. No one around them gets it. No one to [share wins with / get feedback from / stay accountable to]. Does that sound familiar?"</div></div></div>
+      <div class="s-row"><div class="s-n">3</div><div class="s-c"><div class="s-t">Poll — the loneliness question <span class="ib">Poll</span></div><div class="s-b">"Quick question: do you have people around you who are doing the same [journey/work/goal] as you?" → YES, a few / NO, mostly alone. The majority will say no — that becomes your proof of need.</div></div></div>
+      <div class="s-row"><div class="s-n">4</div><div class="s-c"><div class="s-t">Name the isolation cost</div><div class="s-b">"Here's what that costs most people: [specific consequence 1]. [Consequence 2]. [Consequence 3]. Not because they lack talent. Because they're trying to [climb the mountain] with no one beside them."</div></div></div>
+      <div class="s-row"><div class="s-n">5</div><div class="s-c"><div class="s-t">The "better together" insight</div><div class="s-b">"Here's something research — and my own experience — keeps confirming: [your audience] who do this alongside others [move faster / stay consistent / go further] than those who go it alone. Not slightly. Dramatically."</div></div></div>
+      <div class="s-row"><div class="s-n">6</div><div class="s-c"><div class="s-t">Your own experience of it</div><div class="s-b">"I used to think I was the problem. That if I just had more discipline, I'd [achieve the goal]. Then I found [a person / a group / a room] of people doing the same thing. Everything changed. Not because I changed — because the environment changed."</div></div></div>
+      <div class="s-row"><div class="s-n">7</div><div class="s-c"><div class="s-t">Question sticker — collect their pain <span class="ib">Interactive</span></div><div class="s-b">"Quick question: what's the hardest part of doing [the journey] without other people around you? Be specific — I read every reply." Save every answer. This becomes your sales copy for Days 5-7.</div></div></div>
+      <div class="s-row"><div class="s-n">8</div><div class="s-c"><div class="s-t">Tease — something I've been building</div><div class="s-b">"I've been working on something because of exactly this. Something I'm almost ready to share. I want to make sure it's right before I open it up. Keep an eye on my stories this week."</div></div></div>
+      <div class="s-row"><div class="s-n">9</div><div class="s-c"><div class="s-t">Founding member seed — first mention</div><div class="s-b">"The people who are here this week will get something the rest won't. I'll explain more as the week goes on. For now — just keep watching."</div></div></div>
+      <div class="s-row"><div class="s-n">10</div><div class="s-c"><div class="s-t">Tomorrow hook</div><div class="s-b">"Tomorrow I want to show you what's actually possible when [your audience] has the right people around them. Real examples. Real results. Come back." </div></div></div>
+      <div class="div"></div>
+      <div class="rule"><div class="rd"></div><div class="rt">Zero selling today. The founding member seed is a single low-pressure line — not a pitch.</div></div>
+      <div class="rule"><div class="rd"></div><div class="rt">Save every reply from story 7 — it becomes your Days 5-7 copy and objection handling.</div></div>
+    </div>
+    <div class="footer"><span class="f-hint">Day 1 — Curiosity</span><div class="f-nav"><button class="f-btn" onclick="show(2)">Day 2 →</button></div></div>
+  </div>
+</div>
+
+<div id="d2" class="day-panel">
+  <div class="card">
+    <div class="card-head">
+      <div class="card-row">
+        <div class="day-label">Day 2</div>
+        <div class="card-title">Social proof + the transformation — "look what happens when people do this together"</div>
+        <div class="trigger" style="background:#E1F5EE;color:#085041">Social Proof + Desire</div>
+      </div>
+      <div class="card-goal">Validate the problem · show the before/after of community · introduce what's possible</div>
+    </div>
+    <div class="card-body">
+      <div class="urgency-box"><div class="urgency-title">Urgency planted today</div><div class="urgency-body">Mirror yesterday's poll results publicly. "Most of you said you're doing this alone." Creates collective recognition — and sets up the community as the obvious solution without naming it yet.</div></div>
+      <div class="s-lbl">10 stories max</div>
+      <div class="s-row"><div class="s-n">1</div><div class="s-c"><div class="s-t">Mirror yesterday's poll results</div><div class="s-b">"Yesterday I asked if you had people around you doing the same [journey]. [X]% of you said no. Mostly alone. I wasn't surprised. But I want to show you what that's actually costing you."</div></div></div>
+      <div class="s-row"><div class="s-n">2</div><div class="s-c"><div class="s-t">Mirror top replies from story 7</div><div class="s-b">Show 3-4 blurred/anonymised DM screenshots from yesterday's question sticker. "Here's what you told me. '[Quote 1].' '[Quote 2].' '[Quote 3].' You're not alone in feeling this way. Not even close."</div></div></div>
+      <div class="s-row"><div class="s-n">3</div><div class="s-c"><div class="s-t">The environment shapes everything</div><div class="s-b">"Here's a truth most people underestimate: your [results/progress/consistency] are heavily shaped by who you're surrounded by. Not slightly. Research on [habit formation / accountability / learning] consistently shows that the [environment] is more powerful than [willpower]."</div></div></div>
+      <div class="s-row"><div class="s-n">4</div><div class="s-c"><div class="s-t">Before — going it alone story</div><div class="s-b">"Let me show you what the 'alone' path actually looks like. [Person description] had been [doing the thing] by themselves for [time]. They were [consistent/disciplined/motivated]. And still [stuck pattern]. The problem wasn't their effort. It was the environment."</div></div></div>
+      <div class="s-row"><div class="s-n">5</div><div class="s-c"><div class="s-t">After — what changed when they had the right people</div><div class="s-b">"Then [something changed — they joined a group / found a community / started doing this with others]. Within [timeframe]: [specific result 1]. [Result 2]. '[Their exact quote].' Same person. Same effort. Different environment."</div></div></div>
+      <div class="s-row"><div class="s-n">6</div><div class="s-c"><div class="s-t">What a real community actually provides</div><div class="s-b">"I don't mean a Discord server with [number] people and tumbleweeds. I mean a place where: [specific value 1 — accountability that actually works]. [Value 2 — feedback from people who get it]. [Value 3 — wins that get celebrated, not met with blank stares]."</div></div></div>
+      <div class="s-row"><div class="s-n">7</div><div class="s-c"><div class="s-t">Proof of concept — second case study</div><div class="s-b">"Another person I know: [brief description]. Was [stuck pattern] for [time]. Started [doing this alongside others]. [Specific outcome] in [timeframe]. Not because they got smarter. Because they stopped being alone in it."</div></div></div>
+      <div class="s-row"><div class="s-n">8</div><div class="s-c"><div class="s-t">The multiplier insight</div><div class="s-b">"[Doing your thing] alone is [hard]. [Doing it] with the right people around you is [different] — not because the work gets easier, but because [you stop second-guessing yourself / you move faster / you don't quit when it gets hard]."</div></div></div>
+      <div class="s-row"><div class="s-n">9</div><div class="s-c"><div class="s-t">Poll — have they experienced this <span class="ib">Poll</span></div><div class="s-b">"Have you ever done [the thing] better because of the people around you — even once?" → YES, I've felt this / NOT YET. The yes vote validates the insight. The not yet vote creates desire.</div></div></div>
+      <div class="s-row"><div class="s-n">10</div><div class="s-c"><div class="s-t">Tomorrow hook + founding member tease</div><div class="s-b">"Tomorrow I'm going to show you what I've been building — and why the people who are here this week get something the rest won't. Come back."</div></div></div>
+    </div>
+    <div class="footer"><span class="f-hint">Day 2 — Social Proof</span><div class="f-nav"><button class="f-btn" onclick="show(1)">← Day 1</button><button class="f-btn" onclick="show(3)">Day 3 →</button></div></div>
+  </div>
+</div>
+
+<div id="d3" class="day-panel">
+  <div class="card">
+    <div class="card-head">
+      <div class="card-row">
+        <div class="day-label">Day 3</div>
+        <div class="card-title">Reveal the community — name it, show inside, introduce founding perks</div>
+        <div class="trigger" style="background:#E1F5EE;color:#085041">Desire + Anticipation</div>
+      </div>
+      <div class="card-goal">First reveal · what's inside · founding member perks · 48hr cart countdown begins</div>
+    </div>
+    <div class="card-body">
+      <div class="urgency-box"><div class="urgency-title">Urgency activated today — founding member window opens</div><div class="urgency-body">This is the first day urgency becomes explicit. The founding member price and perks are announced. Cart opens in 48 hours. The "watching this week" payoff is delivered here.</div></div>
+      <div class="s-lbl">10 stories max</div>
+      <div class="s-row"><div class="s-n">1</div><div class="s-c"><div class="s-t">The reveal — name it</div><div class="s-b">"Okay. I've been teasing this all week. Here it is." [Community Name]. One sentence on what it is. "A [description] for [specific audience] who [doing the core thing] and want to [specific outcome] — without doing it alone."</div></div></div>
+      <div class="s-row"><div class="s-n">2</div><div class="s-c"><div class="s-t">Why I built this specifically</div><div class="s-b">"I built [Community Name] because [personal reason connected to Day 1's isolation insight]. Not as a side project. As the thing I wish had existed when I was [in their position]."</div></div></div>
+      <div class="s-row"><div class="s-n">3</div><div class="s-c"><div class="s-t">What's actually inside — core pillars</div><div class="s-b">Walk through 3-4 core pillars of the community. "[Pillar 1 name] — [one sentence on what it provides and why it matters]." "[Pillar 2]." "[Pillar 3]." "[Pillar 4]." Make each pillar sound like a problem solved, not a feature listed.</div></div></div>
+      <div class="s-row"><div class="s-n">4</div><div class="s-c"><div class="s-t">What makes it different from dead communities</div><div class="s-b">"Most communities fail because [reason 1 — no structure]. [Reason 2 — wrong people]. [Reason 3 — host disappears after launch]. Here's how [Community Name] is different: [specific structural choice you made]. [Specific curation decision]. [Specific commitment you personally make]."</div></div></div>
+      <div class="s-row"><div class="s-n">5</div><div class="s-c"><div class="s-t">Your personal commitment — show skin in the game</div><div class="s-b">"Here's what I personally commit to inside [Community Name]: [specific thing you do weekly — live sessions / direct feedback / curated resources / personal replies]. Not a promise. A standing commitment."</div></div></div>
+      <div class="s-row"><div class="s-n">6</div><div class="s-c"><div class="s-t">The founding member perks — name them all</div><div class="s-b">"The people who join this week — the founding cohort — get something the rest won't. PERK 1: [Founding price locked forever — price goes up to $[X] after Day 7]. PERK 2: [Private founding member channel]. PERK 3: [Live onboarding call with you personally]. PERK 4: [Founding badge — permanent]. These disappear when the launch window closes."</div></div></div>
+      <div class="s-row"><div class="s-n">7</div><div class="s-c"><div class="s-t">Why founding members matter to the community</div><div class="s-b">"Founding members aren't just early buyers. They set the tone. They shape the culture. They become the people everyone else learns from. The founding cohort of [Community Name] will be the people who define what this place becomes. That matters to me — which is why I'm making it worth it."</div></div></div>
+      <div class="s-row"><div class="s-n">8</div><div class="s-c"><div class="s-t">Price reveal + anchor</div><div class="s-b">"Founding member price: $[price]/[month or year]. After this week: $[higher price]. The price goes up permanently once the founding window closes. Not a countdown timer trick. An actual price change." Add countdown sticker to Day 7.</div></div></div>
+      <div class="s-row"><div class="s-n">9</div><div class="s-c"><div class="s-t">Question sticker — what do you want to know <span class="ib">Interactive</span></div><div class="s-b">"What questions do you have about [Community Name] before it opens? Drop them here — I'll answer everything in tomorrow's stories." Collects real objections for Days 4-5.</div></div></div>
+      <div class="s-row"><div class="s-n">10</div><div class="s-c"><div class="s-t">Cart opens in 48 hours</div><div class="s-b">"Founding member doors open in 48 hours. I'll post the link directly to my stories on Day 5. If you want to be first to know — turn on notifications. The founding cohort cap is [number] people." Add countdown sticker.</div></div></div>
+    </div>
+    <div class="footer"><span class="f-hint">Day 3 — Reveal</span><div class="f-nav"><button class="f-btn" onclick="show(2)">← Day 2</button><button class="f-btn" onclick="show(4)">Day 4 →</button></div></div>
+  </div>
+</div>
+
+<div id="d4" class="day-panel">
+  <div class="card">
+    <div class="card-head">
+      <div class="card-row">
+        <div class="day-label">Day 4</div>
+        <div class="card-title">Answer objections + go deeper on value</div>
+        <div class="trigger" style="background:#E1F5EE;color:#085041">Trust removal</div>
+      </div>
+      <div class="card-goal">Real answers to real questions · spotlight one pillar in depth · build desire · 24hr countdown</div>
+    </div>
+    <div class="card-body">
+      <div class="urgency-box"><div class="urgency-title">Urgency today</div><div class="urgency-body">"Doors open tomorrow." Real countdown. Founding member cap reminder — how many spots are already reserved from story 9 replies. Creates gentle FOMO without pressure.</div></div>
+      <div class="s-lbl">10 stories max</div>
+      <div class="s-row"><div class="s-n">1</div><div class="s-c"><div class="s-t">Set the tone — real answers</div><div class="s-b">"Yesterday I asked what questions you had about [Community Name]. You came through. Today I'm answering everything. No sales pitch. Just straight answers."</div></div></div>
+      <div class="s-row"><div class="s-n">2</div><div class="s-c"><div class="s-t">Objection 1 — "Is this actually active or will it go quiet?"</div><div class="s-b">"'Will this be like every other community I've joined — active for a week then dead?' Fair question. Here's what makes [Community Name] different: [specific structural choice — weekly live sessions / curated prompts / your personal daily presence]. I've designed this specifically so it doesn't die. Here's how."</div></div></div>
+      <div class="s-row"><div class="s-n">3</div><div class="s-c"><div class="s-t">Objection 2 — "I don't have time for another thing"</div><div class="s-b">"'I'm already stretched thin — I don't have time to be active in a community.' The minimum valuable dose is [X minutes per week]. That's it. You get value as a lurker. You get more as a participant. But you don't have to be everywhere all the time."</div></div></div>
+      <div class="s-row"><div class="s-n">4</div><div class="s-c"><div class="s-t">Objection 3 — "Will the people in here be at my level?"</div><div class="s-b">"'I'm worried the community will be full of beginners.' [Community Name] is specifically for [specific qualification]. Not [too early stage]. Not [too advanced]. The entry criteria filter for [specific type of person]. Everyone in the room is [relevant descriptor]."</div></div></div>
+      <div class="s-row"><div class="s-n">5</div><div class="s-c"><div class="s-t">Objection 4 — "Is this worth paying for when free communities exist?"</div><div class="s-b">"'Why pay when I can find free communities?' Free communities have open doors. Anyone gets in. The quality of conversation, the level of people, the commitment of members — all directly tied to whether there's a barrier to entry. Paying is the filter. It's what makes the room worth being in."</div></div></div>
+      <div class="s-row"><div class="s-n">6</div><div class="s-c"><div class="s-t">Go deep on one pillar — the most valuable one</div><div class="s-b">Pick the pillar from Day 3 that most directly solves the Day 1 isolation pain. Spend 2 stories on it. "Let me show you exactly how [Pillar X] works inside [Community Name]. [Specific mechanic]. [What happens in a real week]. [What a member gets from just this one pillar alone]."</div></div></div>
+      <div class="s-row"><div class="s-n">7</div><div class="s-c"><div class="s-t">Member story or early testimonial</div><div class="s-b">If you have beta members or early access people: "[Person description] has been inside for [time]. Here's what they said: '[specific quote about the community experience].' Not about a result yet — about the feeling of being in the right room."</div></div></div>
+      <div class="s-row"><div class="s-n">8</div><div class="s-c"><div class="s-t">Future-pace — a week from now</div><div class="s-b">"Picture yourself a week from now as a founding member. You've introduced yourself. You've seen [specific thing that happens in week 1]. Someone in the community [specific interaction that shows value]. You think: 'I should have done this sooner.' That moment is 7 days away."</div></div></div>
+      <div class="s-row"><div class="s-n">9</div><div class="s-c"><div class="s-t">Founding cap update — how many spots left</div><div class="s-b">"Quick update on founding member spots: [X] of [Y] reserved already just from people who replied to yesterday's question sticker. Once the [number] spots are gone — founding pricing and perks close permanently. Doors open tomorrow." Countdown sticker.</div></div></div>
+      <div class="s-row"><div class="s-n">10</div><div class="s-c"><div class="s-t">Tomorrow — link goes live</div><div class="s-b">"Tomorrow I'm dropping the founding member link directly in my stories. First [number] people who join lock in the founding price and all the perks. Turn on notifications if you don't want to miss it."</div></div></div>
+    </div>
+    <div class="footer"><span class="f-hint">Day 4 — Trust removal</span><div class="f-nav"><button class="f-btn" onclick="show(3)">← Day 3</button><button class="f-btn" onclick="show(5)">Day 5 →</button></div></div>
+  </div>
+</div>
+
+<div id="d5" class="day-panel">
+  <div class="card">
+    <div class="card-head">
+      <div class="card-row">
+        <div class="day-label">Day 5</div>
+        <div class="card-title">Cart opens — founding member link drops</div>
+        <div class="trigger" style="background:#E1F5EE;color:#085041">Launch Day</div>
+      </div>
+      <div class="card-goal">Full offer summary · link drops · first joiners social proof · 48hr founding window</div>
+    </div>
+    <div class="card-body">
+      <div class="urgency-box"><div class="urgency-title">Urgency today — founding window is live</div><div class="urgency-body">48-hour founding member window. Price goes up Day 7 midnight. Founding perks gone. Cap is real. Post stories across the day — morning open, midday momentum, evening reminder.</div></div>
+      <div class="s-lbl">10 stories max — post across the day in 3 blocks</div>
+      <div class="s-row"><div class="s-n">1</div><div class="s-c"><div class="s-t">Morning — it's open</div><div class="s-b">"Today is the day. [Community Name] founding member doors are officially open. The link is in my bio right now." Short. Direct. Feels like a payoff for watching all week.</div></div></div>
+      <div class="s-row"><div class="s-n">2</div><div class="s-c"><div class="s-t">Morning — the full founding offer recap</div><div class="s-b">"Here's everything founding members get: [pillar 1]. [Pillar 2]. [Pillar 3]. [Pillar 4]. PLUS: Founding price locked forever. Private founding channel. Live onboarding call. Founding badge. All of this disappears at midnight Day 7."</div></div></div>
+      <div class="s-row"><div class="s-n">3</div><div class="s-c"><div class="s-t">Morning — why this week matters</div><div class="s-b">"After Day 7, [Community Name] stays open — but at $[higher price] with no founding perks. The community is evergreen. The founding member experience is not. This week only."</div></div></div>
+      <div class="s-row"><div class="s-n">4</div><div class="s-c"><div class="s-t">Midday — first joiners social proof</div><div class="s-b">"People are already inside. [Number] founding members in the first [X hours]." Screenshot of join notifications or welcome messages if available. "Welcome to [names if comfortable]. These are your founding cohort."</div></div></div>
+      <div class="s-row"><div class="s-n">5</div><div class="s-c"><div class="s-t">Midday — connect back to Day 1 isolation insight</div><div class="s-b">"A few days ago I asked: do you have people around you doing the same [journey]? Most of you said no. [Community Name] is the answer to that. Right now. Link in bio."</div></div></div>
+      <div class="s-row"><div class="s-n">6</div><div class="s-c"><div class="s-t">Midday — spotlight one founding perk</div><div class="s-b">"One thing I want to make sure you understand about the founding member perks — and specifically the live onboarding call: [what it is, what happens on it, why it matters for their first 30 days]. This only happens for founding members. After Day 7, new members onboard themselves."</div></div></div>
+      <div class="s-row"><div class="s-n">7</div><div class="s-c"><div class="s-t">Evening — 48 hours left on founding window</div><div class="s-b">"48 hours left on the founding member window. After midnight Day 7: founding price gone. Founding perks gone. [Number] spots left in the founding cohort cap." Countdown sticker.</div></div></div>
+      <div class="s-row"><div class="s-n">8</div><div class="s-c"><div class="s-t">Evening — address the fence-sitter</div><div class="s-b">"If you've been watching this week and something resonated — this is the moment. Not because I'm trying to pressure you. Because the founding member experience genuinely is different from joining later. And it closes in 48 hours."</div></div></div>
+      <div class="s-row"><div class="s-n">9</div><div class="s-c"><div class="s-t">Evening — question sticker for last doubts <span class="ib">Interactive</span></div><div class="s-b">"If something is still holding you back from joining — what is it? Drop it here. I'll answer personally before the window closes." Creates direct conversation that converts hesitant buyers.</div></div></div>
+      <div class="s-row"><div class="s-n">10</div><div class="s-c"><div class="s-t">Evening — final CTA of the day</div><div class="s-b">"Link is in my bio. $[founding price]/[period]. Founding perks included. [Number] founding spots remaining. Tomorrow is the second-to-last day of this window."</div></div></div>
+    </div>
+    <div class="footer"><span class="f-hint">Day 5 — Launch</span><div class="f-nav"><button class="f-btn" onclick="show(4)">← Day 4</button><button class="f-btn" onclick="show(6)">Day 6 →</button></div></div>
+  </div>
+</div>
+
+<div id="d6" class="day-panel">
+  <div class="card">
+    <div class="card-head">
+      <div class="card-row">
+        <div class="day-label">Day 6</div>
+        <div class="card-title">Momentum + final objection sweep — "24 hours left"</div>
+        <div class="trigger" style="background:#E1F5EE;color:#085041">FOMO + Urgency</div>
+      </div>
+      <div class="card-goal">New member momentum · address last doubts · 24hr warning · personal close</div>
+    </div>
+    <div class="card-body">
+      <div class="urgency-box"><div class="urgency-title">Urgency today — 24 hours left on founding window</div><div class="urgency-body">This is the highest urgency day. Founding price gone tomorrow midnight. Perks gone. Cap filling. Post morning, midday, and evening. Each post shorter and more direct than the last.</div></div>
+      <div class="s-lbl">10 stories max</div>
+      <div class="s-row"><div class="s-n">1</div><div class="s-c"><div class="s-t">Morning — momentum</div><div class="s-b">"[Number] founding members are already inside [Community Name]. In just [X hours]. These are the people who are going to define this community's culture. Your future peers — if you join today."</div></div></div>
+      <div class="s-row"><div class="s-n">2</div><div class="s-c"><div class="s-t">Morning — 24 hours left statement</div><div class="s-b">"24 hours left on the founding member window. After tomorrow midnight: price goes up to $[higher price]. Founding perks close. The [number] founding spot cap — whatever's left gets filled or locked." Countdown sticker.</div></div></div>
+      <div class="s-row"><div class="s-n">3</div><div class="s-c"><div class="s-t">Early member quote or DM</div><div class="s-b">If you have a real quote from someone who just joined: "[Member first name] joined yesterday and said: '[specific quote about first impression or why they joined].' That's the room you'd be walking into."</div></div></div>
+      <div class="s-row"><div class="s-n">4</div><div class="s-c"><div class="s-t">The cost of joining later vs now</div><div class="s-b">"Here's the practical difference between joining today and joining next month: Today — $[founding price], founding perks, live onboarding call, founding badge, founding cohort energy. Next month — $[higher price], standard onboarding, no founding perks. Same community. Very different entry."</div></div></div>
+      <div class="s-row"><div class="s-n">5</div><div class="s-c"><div class="s-t">Final objection — "I'll join eventually, just not now"</div><div class="s-b">"The most common thing I hear at this stage: 'I'll probably join — just not right now.' I understand. But 'eventually' at $[higher price] with no founding perks is a real cost. The community will still be there. The founding member experience won't."</div></div></div>
+      <div class="s-row"><div class="s-n">6</div><div class="s-c"><div class="s-t">Final objection — "I'm not sure if I'll be active enough to justify it"</div><div class="s-b">"'What if I join and don't show up enough?' Here's my honest answer: the minimum valuable dose is [X minutes/week]. Even at that level you'll get [specific value]. And if after [30 days] you feel like it wasn't worth it — [cancellation terms / refund policy]. Zero risk."</div></div></div>
+      <div class="s-row"><div class="s-n">7</div><div class="s-c"><div class="s-t">Personal — why the founding cohort matters to you</div><div class="s-b">"I want to be honest about why the founding cohort matters to me beyond just sales. The first [number] members set the tone for every member who comes after. I'm being selective about who I want in that room — not because I'm being exclusive, but because quality compounds."</div></div></div>
+      <div class="s-row"><div class="s-n">8</div><div class="s-c"><div class="s-t">Two paths — simple and direct</div><div class="s-b">"Two paths. Path 1: you keep doing [the journey] the way you've been doing it. Alone. [Honest consequence]. Path 2: you join the founding cohort today. [Specific thing that changes immediately]. [What a week from now looks like]. One decision."</div></div></div>
+      <div class="s-row"><div class="s-n">9</div><div class="s-c"><div class="s-t">Spots update + countdown</div><div class="s-b">"[Number] founding spots remaining out of [total]. Founding window closes tomorrow midnight. Link in bio." Countdown sticker. One line. Nothing else on this slide.</div></div></div>
+      <div class="s-row"><div class="s-n">10</div><div class="s-c"><div class="s-t">Final personal message of the day</div><div class="s-b">"If you've been on the fence all week — what would it take for this to be a yes? Reply here. I'll answer personally before midnight tomorrow." Converts the fence-sitters who just need one question answered.</div></div></div>
+    </div>
+    <div class="footer"><span class="f-hint">Day 6 — 24hr warning</span><div class="f-nav"><button class="f-btn" onclick="show(5)">← Day 5</button><button class="f-btn" onclick="show(7)">Day 7 →</button></div></div>
+  </div>
+</div>
+
+<div id="d7" class="day-panel">
+  <div class="card">
+    <div class="card-head">
+      <div class="card-row">
+        <div class="day-label">Day 7</div>
+        <div class="card-title">Last day — honour the close, celebrate, leave the door open</div>
+        <div class="trigger" style="background:#E1F5EE;color:#085041">Closure</div>
+      </div>
+      <div class="card-goal">Final push · hard close at midnight · celebrate joiners · dignified message to non-buyers</div>
+    </div>
+    <div class="card-body">
+      <div class="urgency-box"><div class="urgency-title">Urgency today — founding window closes tonight at midnight</div><div class="urgency-body">Post in 3 blocks: morning final push, afternoon objection sweep, evening countdown. After midnight — post the close. Honour it. Price actually goes up tomorrow.</div></div>
+      <div class="s-lbl">10 stories across 3 time blocks</div>
+      <div class="s-row"><div class="s-n">1</div><div class="s-c"><div class="s-t">Morning — this is the last day</div><div class="s-b">"Today is it. Founding member window for [Community Name] closes tonight at midnight. No extensions. The price goes up tomorrow. The perks close tonight. If you're in — today is the day."</div></div></div>
+      <div class="s-row"><div class="s-n">2</div><div class="s-c"><div class="s-t">Morning — full founding offer one last time</div><div class="s-b">One clean recap slide. "Founding member: $[price]/[period] — locked forever. [Perk 1]. [Perk 2]. [Perk 3]. [Perk 4]. Tonight midnight — gone. Link in bio."</div></div></div>
+      <div class="s-row"><div class="s-n">3</div><div class="s-c"><div class="s-t">Afternoon — momentum update</div><div class="s-b">"[Number] founding members are inside. [Number] spots left. The founding cohort is shaping up to be exactly the room I hoped it would be." Optional: share one quote from a new member if you have it.</div></div></div>
+      <div class="s-row"><div class="s-n">4</div><div class="s-c"><div class="s-t">Afternoon — final objection: "the community might not work out"</div><div class="s-b">"'What if [Community Name] doesn't live up to what you're promising?' Fair. That's why I offer [refund window / trial period / cancellation terms]. You can try it with [no/low] risk. If it's not right for you — [specific exit terms]. No awkward conversations."</div></div></div>
+      <div class="s-row"><div class="s-n">5</div><div class="s-c"><div class="s-t">Afternoon — the thing that changes tomorrow</div><div class="s-b">"Tomorrow, [Community Name] is still open. But it's $[higher price]. The founding cohort will have already started. You'd be joining something in motion rather than something you helped build. Both are fine. But they're different."</div></div></div>
+      <div class="s-row"><div class="s-n">6</div><div class="s-c"><div class="s-t">Evening — hours left countdown</div><div class="s-b">"[X] hours left. Founding window closes at midnight. [Number] founding spots remaining. Link in bio." Countdown sticker. One sentence. Nothing else.</div></div></div>
+      <div class="s-row"><div class="s-n">7</div><div class="s-c"><div class="s-t">Evening — final personal message</div><div class="s-b">"This is the last thing I'll say before the window closes: [Community Name] exists because [the isolation problem from Day 1] is real. And I know what it feels like to do [the journey] without the right people beside you. You don't have to anymore. Link in bio."</div></div></div>
+      <div class="s-row"><div class="s-n">8</div><div class="s-c"><div class="s-t">After midnight — the close</div><div class="s-b">"The founding member window for [Community Name] is now closed. The price has moved to $[new price]. Founding perks are no longer available. Thank you to everyone who joined this week. I'll see you inside."</div></div></div>
+      <div class="s-row"><div class="s-n">9</div><div class="s-c"><div class="s-t">After midnight — celebrate the founding cohort</div><div class="s-b">"To everyone who joined: you're the founding cohort. You helped build this from the ground up. The community is what you make it. Let's go." Warm. Genuine. Not hype.</div></div></div>
+      <div class="s-row"><div class="s-n">10</div><div class="s-c"><div class="s-t">After midnight — leave the door open with dignity</div><div class="s-b">"To everyone who didn't make the founding window: [Community Name] is still open at $[new price]. No founding perks, but the room is just as good. When you're ready — the link stays in my bio. No rush. No pressure. See you when the time is right."</div></div></div>
+      <div class="div"></div>
+      <div class="rule"><div class="rd"></div><div class="rt">Actually raise the price after midnight. If you don't, every future launch deadline becomes meaningless.</div></div>
+      <div class="rule"><div class="rd"></div><div class="rt">The closing message to non-buyers converts more people in the next 48 hours than any urgency tactic. Leave with grace.</div></div>
+    </div>
+    <div class="footer"><span class="f-hint">Day 7 — Close</span><div class="f-nav"><button class="f-btn" onclick="show(6)">← Day 6</button></div></div>
+  </div>
+</div>
+
+<script>
+function show(n){
+  document.querySelectorAll('.day-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.d-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('d'+n).classList.add('active');
+  document.querySelectorAll('.d-btn')[n-1].classList.add('active');
+}
+</script>
